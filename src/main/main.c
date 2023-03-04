@@ -12,7 +12,7 @@ void handlerCont(int signum) {
 }
 
 int main() {
-  signal(SIGCONT, handlerCont); // kill -CONT <pid>
+  signal(SIGCONT, handlerCont); // kill -CONT 123 # pid
   printf("main\n");
   foo();
 

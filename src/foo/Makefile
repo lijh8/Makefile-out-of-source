@@ -31,6 +31,7 @@ $(OBJDIR)/foo/%.o : %.c | $(OBJDIR)/foo
 $(OBJDIR)/foo: ; mkdir -p $(OBJDIR)/foo
 
 -include $(OBJDIR)/foo/*.d
+
 clean : ; -rm -fr $(OBJDIR)
 
 .PHONY : all clean
