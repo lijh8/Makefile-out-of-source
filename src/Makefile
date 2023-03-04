@@ -7,9 +7,9 @@ export OBJDIR = $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/objdir_tmp
 # libtool manual 4.2: -version-number
 define version_number
 	$(MAKE) -C $@ soname=lib$@.so.$(word 1,$(subst ., ,$(1)))
-	cp $(OBJDIR)/$@/$@ $(OBJDIR)/$@/lib$@.so.$(1)
-	cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so.$(word 1,$(subst ., ,$(1))); cd ..
-	cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so; cd ..
+	@ cp $(OBJDIR)/$@/$@ $(OBJDIR)/$@/lib$@.so.$(1)
+	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so.$(word 1,$(subst ., ,$(1))); cd ..
+	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so; cd ..
 endef
 
 SUBDIRS = main foo
