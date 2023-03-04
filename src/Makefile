@@ -1,7 +1,5 @@
 # Makefile for top dir
 
-export OBJDIR = $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/objdir_tmp
-
 # $(call version_number,1.2.3)
 # major.minor.patch
 # libtool manual 4.2: -version-number
@@ -11,6 +9,8 @@ define version_number
 	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so.$(word 1,$(subst ., ,$(1))); cd ..
 	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so; cd ..
 endef
+
+export OBJDIR = $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/objdir_tmp
 
 SUBDIRS = main foo
 
