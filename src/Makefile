@@ -10,7 +10,12 @@ define version_number
 	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so; cd ..
 endef
 
-export OBJDIR = $(dir $(realpath $(lastword $(MAKEFILE_LIST))))/objdir_tmp
+# make BUILD_DIR=build
+ifndef BUILD_DIR
+export OBJDIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/build
+else
+export OBJDIR = $(abspath $(BUILD_DIR))
+endif
 
 SUBDIRS = main foo
 
@@ -19,7 +24,7 @@ install : $(SUBDIRS)
 
 main : foo
 main : ; $(MAKE) -C $@
-foo : ; $(call version_number,6.2.3)
+foo : ; $(call version_number,1.2.3)
 
 # make DESTDIR=~/foo install
 install :
