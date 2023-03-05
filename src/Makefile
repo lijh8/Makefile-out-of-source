@@ -40,6 +40,10 @@ install :
 	install -m 0755 $(OBJDIR)/main/main "$(DESTDIR)/usr/local/bin"
 	install -m 0755 $(OBJDIR)/foo/*.so* "$(DESTDIR)/usr/local/lib"
 
-clean : ; -rm -fr $(OBJDIR)
+clean :
+	@ for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir $@; \
+	done
+	-rm -fr $(OBJDIR)
 
 .PHONY : $(SUBDIRS) all install clean

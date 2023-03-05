@@ -25,15 +25,13 @@ SUBDIR    = $(OBJDIR)/foo
 all : $(SUBDIR)/foo # $(SUBDIR)/bar
 
 $(SUBDIR)/foo : $(SUBDIR)/$(patsubst %.c,%.o,$(wildcard *.c))
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@  # .cpp
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@ # .cpp
 
 $(SUBDIR)/%.o : %.c | $(SUBDIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<  # .cpp
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $< # .cpp
 
 $(SUBDIR): ; mkdir -p $(SUBDIR)
 
 -include $(SUBDIR)/*.d
-
-clean : ; -rm -fr $(OBJDIR)
-
+clean : ; -rm -fr $(SUBDIR)
 .PHONY : all clean
