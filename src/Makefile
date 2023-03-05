@@ -26,6 +26,8 @@ SUBDIRS = main foo
 
 all : $(SUBDIRS)
 install : $(SUBDIRS)
+$(SUBDIRS) : | $(OBJDIR)
+$(OBJDIR) : ; @ mkdir $@
 
 main : foo
 main : ; $(MAKE) -C $@

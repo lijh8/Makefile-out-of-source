@@ -24,13 +24,13 @@ SUBDIR    = $(OBJDIR)/main
 
 all : $(SUBDIR)/main # $(SUBDIR)/foo
 
-$(SUBDIR)/main : $(SUBDIR)/$(patsubst %.c,%.o,$(wildcard *.c))
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@ # .cpp
+$(SUBDIR)/main : $(SUBDIR)/$(patsubst %.c,%.o,$(wildcard *.c)) # .cpp
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
-$(SUBDIR)/%.o : %.c | $(SUBDIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $< # .cpp
+$(SUBDIR)/%.o : %.c | $(SUBDIR) # .cpp
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-$(SUBDIR): ; mkdir -p $@
+$(SUBDIR) : ; @ mkdir $@
 
 -include $(SUBDIR)/*.d
 clean : ; -rm -fr $(SUBDIR)
