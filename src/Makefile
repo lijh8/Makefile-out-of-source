@@ -1,16 +1,20 @@
 # Makefile for top dir
 
-# $(call version_number,1.2.3)
+# $(call makever,1.2.3)
 # major.minor.patch
-# libtool manual 4.2: -version-number
-define version_number
+define makever
 	$(MAKE) -C $@ soname=lib$@.so.$(word 1,$(subst ., ,$(1)))
+
 	@ cp $(OBJDIR)/$@/$@ $(OBJDIR)/$@/lib$@.so.$(1)
-	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so.$(word 1,$(subst ., ,$(1))); cd ..
-	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) $(OBJDIR)/$@/lib$@.so; cd ..
+
+	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) \
+		$(OBJDIR)/$@/lib$@.so.$(word 1,$(subst ., ,$(1))); cd ..
+
+	@ cd $(OBJDIR)/$@; ln -f -s $(OBJDIR)/$@/lib$@.so.$(1) \
+		$(OBJDIR)/$@/lib$@.so; cd ..
 endef
 
-# make BUILD_DIR=build
+# make # BUILD_DIR=build
 ifndef BUILD_DIR
 export OBJDIR = $(abspath build)
 else
@@ -24,7 +28,7 @@ install : $(SUBDIRS)
 
 main : foo
 main : ; $(MAKE) -C $@
-foo : ; $(call version_number,1.2.3)
+foo : ; $(call makever,1.2.3)
 
 # make DESTDIR=~/foo install
 install :

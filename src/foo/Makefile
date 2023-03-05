@@ -20,17 +20,19 @@ CFLAGS   += -g # .cpp
 LDFLAGS  += -fsanitize=address
 endif
 
-all : $(OBJDIR)/foo/foo # bar
+SUBDIR    = $(OBJDIR)/foo
 
-$(OBJDIR)/foo/foo : $(OBJDIR)/foo/$(patsubst %.c,%.o,$(wildcard *.c))
+all : $(SUBDIR)/foo # $(SUBDIR)/bar
+
+$(SUBDIR)/foo : $(SUBDIR)/$(patsubst %.c,%.o,$(wildcard *.c))
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@  # CXX for .cpp
 
-$(OBJDIR)/foo/%.o : %.c | $(OBJDIR)/foo
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<  # CXX CXXFLAGS for .cpp
+$(SUBDIR)/%.o : %.c | $(SUBDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<  # .cpp
 
-$(OBJDIR)/foo: ; mkdir -p $(OBJDIR)/foo
+$(SUBDIR): ; mkdir -p $(SUBDIR)
 
--include $(OBJDIR)/foo/*.d
+-include $(SUBDIR)/*.d
 
 clean : ; -rm -fr $(OBJDIR)
 
