@@ -30,7 +30,7 @@ $(SUBDIR)/main : $(SUBDIR)/$(patsubst %.c,%.o,$(wildcard *.c))
 $(SUBDIR)/%.o : %.c | $(SUBDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $< # .cpp
 
-$(SUBDIR): ; mkdir -p $(SUBDIR)
+$(SUBDIR): ; mkdir -p $@
 
 -include $(SUBDIR)/*.d
 clean : ; -rm -fr $(SUBDIR)
