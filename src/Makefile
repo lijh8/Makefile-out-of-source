@@ -12,7 +12,7 @@ endef
 
 # make BUILD_DIR=build
 ifndef BUILD_DIR
-export OBJDIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/build
+export OBJDIR = $(abspath build)
 else
 export OBJDIR = $(abspath $(BUILD_DIR))
 endif
