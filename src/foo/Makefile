@@ -20,7 +20,7 @@ CFLAGS   += -g # .cpp
 LDFLAGS  += -fsanitize=address
 endif
 
-all : $(OBJDIR)/foo/foo # foo
+all : $(OBJDIR)/foo/foo # bar
 
 $(OBJDIR)/foo/foo : $(OBJDIR)/foo/$(patsubst %.c,%.o,$(wildcard *.c))
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@  # CXX for .cpp
