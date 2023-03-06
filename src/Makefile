@@ -4,7 +4,7 @@
 # major.minor.patch
 # libtool manual: -version-number
 define makever
-	$(MAKE) -C $@ soname=lib$@.so.$(word 1,$(subst ., ,$(1)))
+	@ $(MAKE) -C $@ soname=lib$@.so.$(word 1,$(subst ., ,$(1)))
 
 	@ cp $(OBJDIR)/$@/$@ $(OBJDIR)/$@/lib$@.so.$(1)
 
@@ -30,7 +30,7 @@ $(SUBDIRS) : | $(OBJDIR)
 $(OBJDIR) : ; @ mkdir $@
 
 main : foo
-main : ; $(MAKE) -C $@
+main : ; @ $(MAKE) -C $@
 foo : ; $(call makever,1.2.3)
 
 # make DESTDIR=~/foo install
