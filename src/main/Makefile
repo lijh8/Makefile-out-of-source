@@ -24,7 +24,7 @@ SUBDIR    = $(OBJDIR)/main
 
 all : $(SUBDIR)/main # $(SUBDIR)/foo
 
-$(SUBDIR)/main : $(SUBDIR)/$(patsubst %.c,%.o,$(wildcard *.c)) # .cpp
+$(SUBDIR)/main : $(addprefix $(SUBDIR)/,$(patsubst %.c,%.o,$(wildcard *.c))) # .cpp
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 $(SUBDIR)/%.o : %.c | $(SUBDIR) # .cpp
