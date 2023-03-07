@@ -24,6 +24,7 @@ SUBDIR    = $(OBJDIR)/foo
 
 all : $(SUBDIR)/foo # $(SUBDIR)/bar
 
+# https://make.mad-scientist.net/papers/how-not-to-use-vpath/
 $(SUBDIR)/foo : $(addprefix $(SUBDIR)/,$(patsubst %.c,%.o,$(wildcard *.c))) # .cpp
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
