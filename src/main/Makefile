@@ -20,7 +20,7 @@ CFLAGS   += -g # .cpp
 LDFLAGS  += -fsanitize=address
 endif
 
-SUBDIR    = $(OBJDIR)/main
+SUBDIR    = $(OBJDIR)/$(notdir $(CURDIR))
 
 all : $(SUBDIR)/main # $(SUBDIR)/foo
 
