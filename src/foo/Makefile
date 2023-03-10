@@ -13,8 +13,8 @@ LDFLAGS  += -Wl,-soname,$(soname)
 
 # make # NDEBUG=1
 ifdef NDEBUG
-CPPFLAGS += -DNDEBUG
 CFLAGS   += -O3 # .cpp
+CPPFLAGS += -DNDEBUG
 else
 CFLAGS   += -g # .cpp
 LDFLAGS  += -fsanitize=address
