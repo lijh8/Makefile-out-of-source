@@ -7,7 +7,6 @@ LDFLAGS   = -shared # -L$(OBJDIR)/bar
 LDLIBS    = # -lbar
 #CC       = $(CXX) # link with CXX for .cpp
 
-# LDFLAGS  += -Wl,-rpath,$(OBJDIR)/bar
 LDFLAGS  += -Wl,-rpath,'$$ORIGIN/../bar'
 LDFLAGS  += -Wl,-rpath,'$$ORIGIN/../lib'
 LDFLAGS  += -Wl,-soname,$(soname)
