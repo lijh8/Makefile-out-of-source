@@ -8,10 +8,13 @@ define makever
 
 	@ cp $(OBJDIR)/$@/$@ $(OBJDIR)/$@/lib$@.so.$(1)
 
-	@ cd $(OBJDIR)/$@; ln -f -s lib$@.so.$(1) \
-		lib$@.so.$(word 1,$(subst ., ,$(1)))
+	@ cd $(OBJDIR)/$@ ; \
+		ln -f -s lib$@.so.$(1) lib$@.so.$(word 1,$(subst ., ,$(1))) ; \
+		cd - >/dev/null 2>&1 ;
 
-	@ cd $(OBJDIR)/$@; ln -f -s lib$@.so.$(1) lib$@.so
+	@ cd $(OBJDIR)/$@ ; \
+		ln -f -s lib$@.so.$(1) lib$@.so ; \
+		cd - >/dev/null 2>&1 ;
 endef
 
 # make # BUILD_DIR=build
