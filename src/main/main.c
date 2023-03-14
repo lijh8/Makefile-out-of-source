@@ -1,7 +1,11 @@
 #include <stdio.h>
-#include <sanitizer/lsan_interface.h>
 #include <signal.h>
 #include <assert.h>
+
+#ifndef NDEBUG
+#include <sanitizer/lsan_interface.h>
+#endif
+
 #include "foo.h"
 
 void handlerCont(int signum) {
