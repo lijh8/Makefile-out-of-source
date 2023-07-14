@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "cppdbg", // "lldb" for lldb
+      "type": "lldb",
       "request": "launch",
       "name": "Debug",
-      "program": "${fileDirname}/${fileBasenameNoExtension}", //new
+      "program": "${workspaceFolder}/src/build/${fileBasenameNoExtension}/${fileBasenameNoExtension}", //new
       "args": [],
       "cwd": "${fileDirname}",
       "preLaunchTask": "make", //new

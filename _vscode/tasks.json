@@ -4,13 +4,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "cppbuild", // "shell" for lldb
       "label": "make", //new
-      "command": "/usr/bin/make", //new
-      "args": [],
+      "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}/src",
       },
+      "command": "/usr/bin/make", //new
     }
   ]
 }
